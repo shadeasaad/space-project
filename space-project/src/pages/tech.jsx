@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText.js";
 import NavBar from "../components/nav";
+import { BarLoader } from "react-spinners";
 
 import launchVehiclePortrait from "../assets/technology/image-launch-vehicle-portrait.jpg";
 import launchVehicleLandscape from "../assets/technology/image-launch-vehicle-landscape.jpg";
@@ -13,6 +14,15 @@ import spaceCapsuleLandscape from "../assets/technology/image-space-capsule-land
 
 function TechPage() {
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const data = [
     {
@@ -166,6 +176,12 @@ function TechPage() {
           </div>
         </main>
       </div>
+
+      {loading && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0D17]">
+          <BarLoader color="#005eff" />
+        </div>
+      )}
     </div>
   );
 }
