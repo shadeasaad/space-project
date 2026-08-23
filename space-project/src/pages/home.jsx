@@ -6,10 +6,20 @@ import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { BarLoader } from "react-spinners";
 
 function HomePage() {
   const button = useRef(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useGSAP(() => {
     const heroHeadSplit = new SplitText(".hero-head", { type: "chars " });
@@ -99,6 +109,12 @@ function HomePage() {
           </div>
         </Link>
       </div>
+
+      {loading && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0D17]">
+          <BarLoader color="#005eff" />
+        </div>
+      )}
     </div>
   );
 }
