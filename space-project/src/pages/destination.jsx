@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import SplitText from "gsap/SplitText.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { BarLoader } from "react-spinners";
 
 import NavBar from "../components/nav";
 
@@ -158,16 +159,33 @@ function DestinationPage() {
     });
   }
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <div
         className="
+        relative
         bg-destination-sm bg-cover bg-center bg-no-repeat
         md:bg-destination-md
         lg:bg-destination-lg 
         h-screen
         "
       >
+        {loading && (
+          <div className="absolute inset-0 z-[100] flex items-center justify-center bg-[#0B0D17]">
+            <BarLoader color="#005eff" />
+          </div>
+        )}
+
         <NavBar />
         <p className="head mx-10 my-4 lg:my-0 lg:mx-40 text-white/90 font-condensed tracking-[0.2em] flex gap-2">
           <span className="text-white/30 font-bold">01</span>PICK YOUR
