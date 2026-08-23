@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavBar from "../components/nav";
 import SplitText from "gsap/SplitText.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { BarLoader } from "react-spinners";
 
 import markShuttleworthImg from "../assets/crew/image-mark-shuttleworth.webp";
 import anoushehAnsariImg from "../assets/crew/image-anousheh-ansari.png";
@@ -146,26 +147,41 @@ function CrewPage() {
       opacity: 1,
       duration: 3,
     });
-    const hSplit = new SplitText(".h",{type:"chars"})
-    gsap.from(hSplit.chars,{
-         duration: 1,
+    const hSplit = new SplitText(".h", { type: "chars" });
+    gsap.from(hSplit.chars, {
+      duration: 1,
       delay: 1,
       opacity: 0,
       yPercent: 100,
-      stagger:0.02
-      
-    })
+      stagger: 0.02,
+    });
+  }, []);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
       className="
+        relative
         bg-crew-sm bg-cover bg-center bg-no-repeat
         md:bg-crew-md
         lg:bg-crew-lg
         min-h-screen
       "
     >
+      {loading && (
+        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-[#0B0D17]">
+          <BarLoader color="#005eff" />
+        </div>
+      )}
       <NavBar />
 
       <p className=" crew-title px-6 pt-6 text-center lg:text-left lg:px-20 lg:pt-4 text-white/90 font-condensed tracking-[0.2em] flex justify-center lg:justify-start gap-2 md:p-0 md:m-0">
