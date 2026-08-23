@@ -4,6 +4,11 @@ import SplitText from "gsap/SplitText.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+import markShuttleworthImg from "../assets/crew/image-mark-shuttleworth.webp";
+import anoushehAnsariImg from "../assets/crew/image-anousheh-ansari.png";
+import douglasHurleyImg from "../assets/crew/image-douglas-hurley.png";
+import victorGloverImg from "../assets/crew/image-victor-glover.png";
+
 function CrewPage() {
   const btns = useRef(null);
   const img = useRef(null);
@@ -13,7 +18,7 @@ function CrewPage() {
   const imgSliderData = [
     {
       id: 1,
-      img: "src/assets/crew/image-mark-shuttleworth.webp",
+      img: markShuttleworthImg,
       head: "Mission Specialist",
       mainHead: "MARK SHUTTLEWORTH",
       paragraph:
@@ -21,7 +26,7 @@ function CrewPage() {
     },
     {
       id: 2,
-      img: "src/assets/crew/image-anousheh-ansari.png",
+      img: anoushehAnsariImg,
       head: "FLIGHT ENGINEER",
       mainHead: "ANOUSHEH ANSARI",
       paragraph:
@@ -29,7 +34,7 @@ function CrewPage() {
     },
     {
       id: 3,
-      img: "src/assets/crew/image-douglas-hurley.png",
+      img: douglasHurleyImg,
       head: "COMMANDER",
       mainHead: "DOUGLAS HURLEY",
       paragraph:
@@ -37,7 +42,7 @@ function CrewPage() {
     },
     {
       id: 4,
-      img: "src/assets/crew/image-victor-glover.png",
+      img: victorGloverImg,
       head: "PILOT",
       mainHead: "VICTOR GLOVER",
       paragraph:
