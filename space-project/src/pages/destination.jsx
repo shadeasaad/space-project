@@ -5,7 +5,17 @@ import { useGSAP } from "@gsap/react";
 
 import NavBar from "../components/nav";
 
+import moonImg from "../assets/destination/image-moon.png";
+import marsImg from "../assets/destination/image-mars.png";
+import europaImg from "../assets/destination/image-europa.png";
+import titanImg from "../assets/destination/image-titan.png";
 
+const destinationImages = {
+  moon: moonImg,
+  mars: marsImg,
+  europa: europaImg,
+  titan: titanImg,
+};
 
 const destinationItems = [
   {
@@ -168,7 +178,7 @@ function DestinationPage() {
           <img
             ref={Img}
             className=" h-[200px] w-[200px] md:h-[300px] md:w-[300px]  lg:w-[300px] lg:h-[300px] "
-            src={`src/assets/destination/image-${check}.png`}
+            src={destinationImages[check]}
             alt={check}
           />
           <div className="lg:ml-40 my-10 flex flex-col gap-8 md:gap-0">
